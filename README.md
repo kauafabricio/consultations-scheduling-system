@@ -11,7 +11,7 @@ Esse projeto pessoal tem a finalidade de resolver um problema de uma clínica m�
 **Alterar senha**: O sistema utiliza criptografia nas senhas dos usuários e permite que os mesmos alterem quando desejar.  
 **Admin & Gerenciamento de Consultas**: O sistema permite o gerenciamento de consultas pelo administrador, com um painel para filtrar todas as consultas por especialidade e profissional, e para remover consultas.  
 
-!["Diagrama de caso de uso do sistema"](./docs/consultations-scheduling-diagram.jpeg)
+!["Diagrama de caso de uso do sistema"](./project-imgs/consultations-scheduling-diagram.jpeg)
 
 ## Tecnologias utilizadas
 
@@ -41,6 +41,6 @@ Esse projeto pessoal tem a finalidade de resolver um problema de uma clínica m�
 
 ## Imagens do projeto
 
-!["Página inicial em Desktop"](./docs/home-page-desktop.jpeg)
+!["Página inicial em Desktop"](./project-imgs/home-page-desktop.jpeg)
   
 Para visualizar mais imagens do projeto navegue o diretório "prints-do-projeto/".
