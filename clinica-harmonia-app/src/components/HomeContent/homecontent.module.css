@@ -1,0 +1,347 @@
+/* FIRST SECTION */
+
+.firstSectionHome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 30rem;
+    background-image: url(../../assets/imgs/first-section-img.jpg),linear-gradient(90deg, rgb(10, 25, 68) 0%, rgba(29, 78, 216, 0.9) 38%, rgba(96, 165, 250, 0.8) 100%);
+    background-blend-mode: multiply;
+}
+
+.sectionText {
+    padding-left: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sectionText h1 {
+    font-size: 2.5rem;
+    width: 370px;
+    background-image: linear-gradient(117deg, rgba(255,255,255,1) 0%, rgba(227,229,242,1) 100%); 
+    background-clip: text;
+    color: transparent;
+}
+
+.sectionText p {
+    width: 30rem;
+    font-size: 1.1rem;
+    color: rgb(239, 246, 255);
+}
+
+.sectionText button {
+    width: 15rem;
+    padding: 0.8rem 0;
+    border: 1px solid rgb(239, 246, 255);
+    margin-top: 1rem;
+    background-color: transparent;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.sectionText button a {
+    font-family: 'SFUIText-Regular' !important;
+    color: rgb(239, 246, 255);
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.sectionText button:hover {
+    background-color: rgb(13, 55, 170);
+    border: 1px solid rgb(13, 55, 170);
+}
+
+
+/* SERVICE SECTION - SECOND SECTION */
+
+.serviceSectionGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    grid-gap: 2rem;
+    width: 67rem;
+}
+
+.specialityBox {
+    width: 15rem;
+    background: linear-gradient(90deg, rgb(13, 35, 97, 0.1) 0%, rgb(239, 246, 255) 100%);
+    height: 12rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.specialityBox img {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(200, 195, 231);
+    padding: 0.5rem;
+    border-radius: 50px;
+}
+
+.serviceSection {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.serviceSection h1 {
+    color: #272727;
+    font-size: 2rem;
+    max-width: 50rem;
+    width: 90%;
+    text-align: center;
+}
+
+.specialityBox p {
+    font-family: 'SFUIText-Regular';
+    color: #272727;
+}
+
+.specialityBox {
+    transition: 0.3s ease-in-out;
+}
+
+.specialityBox:hover {
+    transform: scale(1.1);
+}
+
+
+/* THIRD SECTION - ABOUT US */
+
+.thirdSection {
+    height: 25rem;
+    width: 100%;
+    display: flex;
+    background-color: rgb(239, 246, 255);
+}
+
+.thirdSectionImage {
+    background-image: url('../../assets/imgs/doctor-and-the-patient.jpg'), linear-gradient(90deg, rgb(13, 35, 97, 0.8) 0%, rgba(29, 78, 216, 0.7) 38%, rgba(96, 165, 250, 0.5) 100%);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 60vw;
+    display: flex;
+    justify-content: end;
+}
+
+.thirdSectionImage img {
+    height: 5rem;
+}
+
+.thirdSectionText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    gap: 2rem;
+}
+
+.thirdSectionText span {
+    color: rgb(13, 35, 97);
+}
+
+.thirdSectionText h1 {
+    color: #272727;
+    text-align: center;
+    font-size: 2rem;
+    width: 90%;
+}
+
+.thirdSectionText p {
+    width: 30rem;
+    color: #272727;
+    font-size: 1.1rem;
+    font-family: 'SFUIText-Regular';
+}
+
+
+/*   FOURTH SECTION - SCHEDULING */
+
+
+.schedulingSection {
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+    align-items: center;
+}
+
+.schedulingSection img {
+    max-height: 100%;
+    width: 100%;
+}
+
+.schedulingSection h1 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 95%;
+    text-align: center;
+    color: rgba(29, 78, 216);
+}
+
+.schedulingSection h2 {
+    font-size: 2rem;
+    color: #272727;
+    width: 95%;
+    text-align: center;
+}
+
+.schedulingSection p {
+    padding-top: 0.5rem;
+    color: #272727;
+    width: 95%;
+    text-align: center;
+}
+
+.schedulingSection button {
+    width: 15rem;
+    padding: 0.8rem 0;
+    border: 1px solid #272727;
+    margin-top: 1rem;
+    background-color: transparent;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+    font-family: 'SFUIText-Regular';
+}
+
+.schedulingSection button a {
+    color: #272727;
+    font-size: 1rem;
+    font-family: 'SFUIText-Regular';
+    text-decoration: none;
+}
+
+.schedulingSection button:hover {
+    background-color: rgb(13, 55, 170);
+    border: 1px solid rgb(13, 55, 170);
+}
+
+.schedulingSection button:hover a {
+    color: rgb(239, 246, 255);
+}
+
+@media screen and (max-width: 1080px){
+    .serviceSectionGrid {
+        grid-template-columns: repeat(3, 1fr);
+        width: 50rem;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .thirdSection {
+        flex-direction: column;
+        height: 35rem;
+    }
+    .thirdSectionImage img {
+        height: 5rem;
+    }
+    .thirdSectionImage {
+        width: 100vw;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .serviceSectionGrid {
+        grid-template-columns: repeat(2, 1fr);
+        width: 32rem;
+    }    
+}
+
+@media screen and (max-width: 645px) {
+    .sectionText {
+        padding-left: 1.5rem;
+    }
+    .sectionText h1 {
+        font-size: 2rem;
+    }
+    .sectionText p {
+        width: 370px;
+    }
+    .firstSectionHome {
+        background-image: url(../../assets/imgs/first-section-img.jpg),linear-gradient(90deg, rgb(8, 19, 49) 0%, rgba(29, 78, 216) 38%, rgba(96, 165, 250) 100%);
+    }
+}
+
+@media screen and (max-width: 520px) {
+
+    .serviceSectionGrid {
+        width: 22rem;
+    }
+    .specialityBox {
+        width: 10rem;
+        height: 7rem;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .thirdSectionText p {
+        font-size: 1rem;
+        width: 80%;
+    }
+    .thirdSectionText h1, .schedulingSection h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .firstSectionHome {
+        height: 25rem;
+        justify-content: center;
+    }
+    .sectionText {
+        padding-left: 1rem;
+    }
+    .sectionText h1 {
+        font-size: 1.6rem;
+        width: 20rem;
+    }
+    .sectionText p {
+        font-size: 0.9rem;
+        width: 95%;
+    }
+    .serviceSection h1, .thirdSectionText h1, .schedulingSection h2 {
+        font-size: 1.6rem;
+    }
+    .sectionText button {
+        width: 12rem;
+        margin-top: 0.5rem;
+    }
+
+    .sectionText button a {
+        font-size: 0.85rem;
+    }
+    .specialityBox p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .serviceSection h1, .thirdSectionText h1, .schedulingSection h2 {
+        font-size: 1.5rem;
+    }
+    .schedulingSection p {
+        font-size: 0.9rem;
+    }
+    .serviceSectionGrid {
+        width: 20.5rem;
+        gap: 0.5rem;
+    }
+}

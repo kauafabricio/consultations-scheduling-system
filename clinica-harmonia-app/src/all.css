@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'SFUIText-Light';
+}
+
+h1, span, h2 {
+    font-family: 'SFUIDisplay-Heavy';
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+    width: 13px;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(7, 23, 68);
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: rgb(5, 17, 49);
+  }  
+
+@font-face {
+    font-family: 'SFUIDisplay-Bold';
+    src: url(../src/assets/fonts/SFUIDisplay-Bold.ttf);
+}
+@font-face {
+    font-family: 'SFUIText-Regular';
+    src: url(../src/assets/fonts/SFUIText-Regular.otf);
+}
+@font-face {
+    font-family: 'SFUIText-Light';
+    src: url(../src/assets/fonts/SFUIText-Light.otf);
+}
+@font-face {
+    font-family: 'SFUIDisplay-Heavy';
+    src: url(../src/assets/fonts/SFUIDisplay-Heavy.otf);
+}
