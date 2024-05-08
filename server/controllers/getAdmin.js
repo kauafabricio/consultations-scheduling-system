@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken"
-import env from "../env.js"
 
 export default async function getAdmin(req, res) {
   const authorizationHeader = req.headers.authorization;
@@ -7,7 +6,7 @@ export default async function getAdmin(req, res) {
   if (authorizationHeader && authorizationHeader.startsWith('BearerAdmin ')) {
     const tokenAdmin = authorizationHeader.substring(12);
     try {
-      const decoded = await jwt.verify(tokenAdmin, env.SECRET);
+      const decoded = await jwt.verify(tokenAdmin, process.env.SECRET);
       if (decoded) {
         return res.status(200).json({"tokenAdminValid": true});
       } else {

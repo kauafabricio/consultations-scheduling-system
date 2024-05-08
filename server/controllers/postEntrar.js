@@ -1,7 +1,6 @@
 import { User } from '../models/models.js'
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import env from "../env.js"
 
 export default async function postEntrar (req, res) {
 
@@ -61,10 +60,10 @@ export default async function postEntrar (req, res) {
         if(user && bcrypt.compareSync(loginPassword, user.password)) {
           // User authenticated //
           if (user.name === "admin" && user.cpf == "11111111111") {
-            const tokenAdmin = await jwt.sign({ adminId: user._id }, env.SECRET, { expiresIn: '10h' })
+            const tokenAdmin = await jwt.sign({ adminId: user._id }, process.env.SECRET, { expiresIn: '10h' })
             res.json({"tokenAdmin": tokenAdmin, "adminId": user._id});
           } else {
-            const token = await jwt.sign({ userId: user._id }, env.SECRET, { expiresIn: '1h' });
+            const token = await jwt.sign({ userId: user._id }, process.env.SECRET, { expiresIn: '1h' });
             res.json({"token": token, "userId": user._id});
           }
 

@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken"
 import { User } from "../models/models.js"
-import env from "../env.js"
 
 export default async function getPainel(req, res) {
   const authorizationHeader = req.headers.authorization;
@@ -8,7 +7,7 @@ export default async function getPainel(req, res) {
   if (authorizationHeader && authorizationHeader.startsWith('Bearer ')) {
     const token = authorizationHeader.substring(7); // Remove o "Bearer " do início do token //
     try {
-      const decoded = await jwt.verify(token, env.SECRET);
+      const decoded = await jwt.verify(token, process.env.SECRET);
       if (decoded) {
         // Se o token for válido //
         const user = await User.findOne({ _id: decoded.userId })

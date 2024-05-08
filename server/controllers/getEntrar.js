@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken"
-import env from "../env.js"
 
 export default async function getEntrar(req, res) {
   const authorizationHeader = req.headers.authorization;
@@ -7,7 +6,7 @@ export default async function getEntrar(req, res) {
   if (authorizationHeader && authorizationHeader.startsWith('Bearer ')) {
     const token = authorizationHeader.substring(7); // Remove o "Bearer " do início do token //
     try {
-      const decoded = await jwt.verify(token, env.SECRET);
+      const decoded = await jwt.verify(token, process.env.SECRET);
 
       if (decoded) {
         // Se o token for válido //
@@ -22,7 +21,7 @@ export default async function getEntrar(req, res) {
   } else if (authorizationHeader && authorizationHeader.startsWith('BearerAdmin ')) {
     const tokenAdmin = authorizationHeader.substring(12);
     try {
-      const decoded = await jwt.verify(tokenAdmin, env.SECRET);
+      const decoded = await jwt.verify(tokenAdmin, process.env.SECRET);
       
       if (decoded) {
         return res.status(200).json({"tokenAdminValid": true});

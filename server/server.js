@@ -1,9 +1,16 @@
 // IMPORTS
 import express from "express"
 import mongoose from "mongoose"
-import env from "./env.js"
+import { configDotenv } from "dotenv"
+import { fileURLToPath } from "url"
+import { dirname } from "path"
 import cors from "cors"
 import router from "./routes/routes.js"
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+configDotenv({ path: `${__dirname}/.env` });
 
 const app = express()
 
@@ -19,7 +26,7 @@ app.use(router)
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
-const uri = `mongodb+srv://${env.DB_USER}:${env.DB_PASS}@mycluster.pyhihoy.mongodb.net/?retryWrites=true&w=majority&appName=myCluster`
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@mycluster.pyhihoy.mongodb.net/?retryWrites=true&w=majority&appName=myCluster`
 
 mongoose.connect(uri, clientOptions)
 .then(() => console.log('Conexão com o MongoDB estabelecida!'))
