@@ -10,15 +10,21 @@ export default function Admin() {
     document.title = 'Clínica Harmonia | Admin';
   }, []);
 
+  const api = axios.create({
+    baseURL: env.urlServer
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       const tokenAdmin = await Cookies.get('tokenAdmin');
       if (tokenAdmin) {
         try {
-          const response = await axios.get(`${env.urlServer}/admin`, {
+          const response = await api.get('/admin', {
             headers: {
               Authorization: `BearerAdmin ${tokenAdmin}`,
-              Accept: 'application/json;charset=utf-8'
+              Accept: 'application/json;charset=utf-8',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             },
           });
           if (response) {
@@ -48,10 +54,6 @@ export default function Admin() {
   const [profissionalsFilteredArray, setProfissionalsFilteredArray] = useState([]);
 
   useEffect(() => {
-
-    const api = axios.create({
-      baseURL: env.urlServer
-    });
 
     const getConsults = async () => {
       try {
