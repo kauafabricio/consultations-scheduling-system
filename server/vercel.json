@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "routes": [
+    { "handle": "filesystem" },
+    {
+      "src": "/api/schedulings",
+      "method": "GET",
+      "dest": "/api/schedulings"
+    },
+    {
+      "src": "/api/schedulings/:id",
+      "method": "DELETE",
+      "dest": "/api/schedulings/:id"
+    },
+    {
+      "src": "/api/datehour",
+      "method": "GET",
+      "dest": "/api/datehour"
+    },
+    {
+      "src": "/entrar",
+      "methods": ["GET", "POST"],
+      "dest": "/entrar"
+    },
+    {
+      "src": "/painel",
+      "methods": ["GET", "POST"],
+      "dest": "/painel"
+    },
+    {
+      "src": "/refresh-pass",
+      "method": "PUT",
+      "dest": "/refresh-pass"
+    },
+    {
+      "src": "/admin",
+      "method": "GET",
+      "dest": "/admin"
+    }
+  ]
+}
