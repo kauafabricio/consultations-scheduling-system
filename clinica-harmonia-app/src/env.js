@@ -1,6 +1,6 @@
 const env = {
   urlServer: 'https://consultations-scheduling-api.vercel.app',
-  urlFront: 'http://localhost:3000'
+  urlFront: 'https://clinica-harmonia.vercel.app'
 }
 
 export default env;
