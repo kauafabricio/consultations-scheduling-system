@@ -10,6 +10,10 @@ export default function Login() {
     console.log(env.urlServer)
   }, []);
 
+  const api = axios.create({
+    baseURL: env.urlServer
+  });
+
   // GET PAGE //
 
   useEffect(() => {
@@ -18,10 +22,12 @@ export default function Login() {
       const tokenAdmin = await Cookies.get('tokenAdmin');
       if (token) {
         try {
-          const response = await axios.get(`${env.urlServer}/entrar`, {
+          const response = await api.get('/entrar', {
             headers: {
               Authorization: `Bearer ${token}`,
-              Accept: 'application/json;charset=utf-8'
+              Accept: 'application/json;charset=utf-8',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             },
           });
           if (response) {
@@ -39,9 +45,11 @@ export default function Login() {
         }
       } else if (tokenAdmin) {
         try {
-          const response = await axios.get(`${env.urlServer}/entrar`, {
+          const response = await api.get('/entrar', {
             headers: {
-              Authorization: `BearerAdmin ${tokenAdmin}`
+              Authorization: `BearerAdmin ${tokenAdmin}`,
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             },
           });
           if (response) {
@@ -98,10 +106,12 @@ export default function Login() {
     const formData = `loginCpf=${loginCpf}&loginPassword=${loginPassword}`;
 
     try {
-      const response = await axios.post(`${env.urlServer}/entrar`, formData, {
+      const response = await api.post(`${env.urlServer}/entrar`, formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json;charset=utf-8'
+          Accept: 'application/json;charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
       });
 
@@ -134,10 +144,12 @@ export default function Login() {
     const formData = `registerName=${registerName}&registerCpf=${registerCpf}&registerPassword=${registerPassword}&registerRepeatPassword=${registerRepeatPassword}`;
 
     try {
-      const response = await axios.post(`${env.urlServer}/entrar`, formData, {
+      const response = await api.post('/entrar', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json;charset=utf-8'
+          Accept: 'application/json;charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
         },
       });
 

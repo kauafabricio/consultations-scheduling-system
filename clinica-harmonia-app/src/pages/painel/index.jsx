@@ -7,6 +7,10 @@ import env from "../../env"
 
 export default function Painel() {
 
+  const api = axios.create({
+    baseURL: env.urlServer
+  });
+
   useEffect(() => {
     document.title = 'Clínica Harmonia | Painel';
   }, []);
@@ -23,10 +27,12 @@ export default function Painel() {
       const token = await Cookies.get('token');
       if (token) {
         try {
-          const response = await axios.get(`${env.urlServer}/painel`, {
+          const response = await api.get('/painel', {
             headers: {
               Authorization: `Bearer ${token}`,
-              Accept: 'application/json;charset=utf-8'
+              Accept: 'application/json;charset=utf-8',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
           });
           if (response.status === 200 && response.data.name) {
@@ -68,9 +74,11 @@ export default function Painel() {
 
     if (avaiableDateHour.length === 0) {
       try {
-        const response = await axios.get(`${env.urlServer}/api/datehour`, {
+        const response = await api.get('/api/datehour', {
           headers: {
-            Accept: 'application/json;charset=utf-8'
+            Accept: 'application/json;charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
           }
         });
   
@@ -78,7 +86,10 @@ export default function Painel() {
           setAvaiableDateHour(response.data.dateHour);
         }
       } catch (err) {
-        showPopUp(err);
+        err.response ?
+        showPopUp(err.response.data.error)
+      : showPopUp(err.message || "Aconteceu algum erro no servidor.")
+      console.log(err)
       }
     }
   }
@@ -107,11 +118,13 @@ export default function Painel() {
     setOptionsClasses(styles.Off)
     
     try {
-      const response = await axios.get(`${env.urlServer}/api/schedulings`, {
+      const response = await api.get('/api/schedulings', {
         headers: {
           'usercpf': `${userCpf}`,
-          Accept: 'application/json;charset=utf-8'        
-          }
+          Accept: 'application/json;charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'      
+        }
       })
       if (response) {
         if(response.data.agendamentos){
@@ -244,10 +257,12 @@ export default function Painel() {
 
       try {
         
-        const response = await axios.post(`${env.urlServer}/painel`, formData, {
+        const response = await api.post('/painel', formData, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            Accept: 'application/json;charset=utf-8'
+            Accept: 'application/json;charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
           }
         })
         
@@ -260,7 +275,10 @@ export default function Painel() {
         }
 
       } catch (err) {
-        showPopUp(err)
+        err.response ?
+        showPopUp(err.response.data.error)
+        : showPopUp(err.message || "Aconteceu algum erro no servidor.")
+        console.log(err)
       }
     } else {
       showPopUp('Selecione todos os campos do formulário para prosseguir com a operação.')
@@ -285,10 +303,12 @@ export default function Painel() {
           const formData = `userCpf=${userCpf}&oldPassword=${oldPassword}&newPassword=${newPassword}&repeatNewPassword=${repeatNewPassword}`
   
           try {
-            const response = await axios.put(`${env.urlServer}/refresh-pass`, formData, {
+            const response = await api.put('/refresh-pass', formData, {
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                Accept: 'application/json;charset=utf-8'
+                Accept: 'application/json;charset=utf-8',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
               }
             })
   
@@ -296,7 +316,10 @@ export default function Painel() {
               response.data.success ? showPopUp(response.data.success) : showPopUp(response.data.error)
             }
           } catch (err) {
-            showPopUp(err)
+            err.response ?
+              showPopUp(err.response.data.error)
+            : showPopUp(err.message || "Aconteceu algum erro no servidor.")
+            console.log(err)
           }
         } else {
           showPopUp('A senha está incorreta, digite novamente para prosseguir com a operação.')
@@ -319,12 +342,19 @@ export default function Painel() {
 
     if (selectedScheduling) {
       try {
-        const response = await axios.delete(`${env.urlServer}/api/schedulings/${selectedScheduling}`)
+        const response = await api.delete(`/api/schedulings/${selectedScheduling}`, {
+          headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+          }})
         if (response) {
           showPopUp(response.data.message)
         }
       } catch (err) {
+        err.response ?
         showPopUp(err.response.data.error)
+          : showPopUp(err.message || "Aconteceu algum erro no servidor.")
+          console.log(err)
       }
     } else {
       showPopUp("Selecione a consulta para prosseguir com a operação.")

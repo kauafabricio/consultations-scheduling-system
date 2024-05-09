@@ -48,12 +48,19 @@ export default function Admin() {
   const [profissionalsFilteredArray, setProfissionalsFilteredArray] = useState([]);
 
   useEffect(() => {
+
+    const api = axios.create({
+      baseURL: env.urlServer
+    });
+
     const getConsults = async () => {
       try {
-        const response = await axios.get(`${env.urlServer}/api/schedulings`, {
+        const response = await api.get('/api/schedulings', {
           headers: {
             admin: 'true',
-            Accept: 'application/json;charset=utf-8'
+            Accept: 'application/json;charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
           },
         });
         if (response) {
@@ -113,7 +120,12 @@ export default function Admin() {
 
   async function removeConsult(id) {
     try {
-      const response = await axios.delete(`${env.urlServer}/api/schedulings/${id}`);
+      const response = await api.delete(`/api/schedulings/${id}`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+        }
+      });
       if (response) {
         window.alert(response.data.message);
         window.location.reload();
