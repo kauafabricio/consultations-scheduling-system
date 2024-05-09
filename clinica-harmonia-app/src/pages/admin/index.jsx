@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import logoPreto from '../../assets/imgs/logo-preto.png';
 import styles from './admin.module.css';
-import env from '../../env.js';
+import env from "../../env"
 
 export default function Admin() {
   useEffect(() => {
@@ -18,6 +18,7 @@ export default function Admin() {
           const response = await axios.get(`${env.urlServer}/admin`, {
             headers: {
               Authorization: `BearerAdmin ${tokenAdmin}`,
+              Accept: 'application/json;charset=utf-8'
             },
           });
           if (response) {
@@ -52,7 +53,7 @@ export default function Admin() {
         const response = await axios.get(`${env.urlServer}/api/schedulings`, {
           headers: {
             admin: 'true',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json;charset=utf-8'
           },
         });
         if (response) {

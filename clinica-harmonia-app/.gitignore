@@ -2,6 +2,4 @@
 /.pnp
 .pnp.js
 /build
-.babelrc.json
-.babel.config.json
 *.mjs

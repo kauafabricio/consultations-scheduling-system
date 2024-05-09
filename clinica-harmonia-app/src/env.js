@@ -1,5 +1,5 @@
 const env = {
-  urlServer: 'http://localhost:5000',
+  urlServer: 'https://consultations-scheduling-api.vercel.app',
   urlFront: 'http://localhost:3000'
 }
 

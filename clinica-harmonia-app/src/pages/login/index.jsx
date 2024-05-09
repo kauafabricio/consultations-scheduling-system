@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import styles from './login.module.css';
-import env from '../../env.js';
+import env from "../../env"
 
 export default function Login() {
   useEffect(() => {
     document.title = 'Clínica Harmonia | Entrar';
+    console.log(env.urlServer)
   }, []);
 
   // GET PAGE //
@@ -20,32 +21,42 @@ export default function Login() {
           const response = await axios.get(`${env.urlServer}/entrar`, {
             headers: {
               Authorization: `Bearer ${token}`,
+              Accept: 'application/json;charset=utf-8'
             },
           });
-          if (response.status === 200 && response.data.tokenValid) {
-            window.location.href = `${env.urlFront}/painel`;
-          }
-          if (response.data.tokenInvalid) {
-            Cookies.remove('token');
+          if (response) {
+            if (response.status === 200 && response.data.tokenValid) {
+              window.location.href = `${env.urlFront}/painel`;
+            }
+            if (response.data.tokenInvalid) {
+              Cookies.remove('token');
+            }
           }
         } catch (err) {
-          window.alert(err.response.data.error);
+          err.response ?
+            window.alert(err.response.data.error)
+          : window.alert(err)
         }
       } else if (tokenAdmin) {
         try {
           const response = await axios.get(`${env.urlServer}/entrar`, {
             headers: {
-              Authorization: `BearerAdmin ${tokenAdmin}`,
+              Authorization: `BearerAdmin ${tokenAdmin}`
             },
           });
-          if (response.status === 200 && response.data.tokenAdminValid) {
-            window.location.href = `${env.urlFront}/admin`;
+          if (response) {
+            if (response.status === 200 && response.data.tokenAdminValid) {
+              window.location.href = `${env.urlFront}/admin`;
+            }
+            if (response.data.tokenAdminInvalid) {
+              Cookies.remove('tokenAdmin');
+            }
           }
-          if (response.data.tokenAdminInvalid) {
-            Cookies.remove('tokenAdmin');
-          }
+          
         } catch (err) {
-          window.alert(err.response.data.error);
+          err.response ?
+            window.alert(err.response.data.error)
+          : window.alert(err)
         }
       }
     };
@@ -90,10 +101,11 @@ export default function Login() {
       const response = await axios.post(`${env.urlServer}/entrar`, formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json;charset=utf-8'
         },
       });
 
-      if (response.data) {
+      if (response) {
         if (response.data.token) {
           await Cookies.set('token', response.data.token, { expires: 1 / 24 });
           window.location.href = `${env.urlFront}/painel`;
@@ -103,7 +115,10 @@ export default function Login() {
         }
       }
     } catch (err) {
-      showModal(err.response.data.error);
+      err.response ?
+        showModal(err.response.data.error)
+      : showModal(err.message || "Aconteceu algum erro no servidor.")
+      console.log(err)
     }
   }
 
@@ -122,10 +137,11 @@ export default function Login() {
       const response = await axios.post(`${env.urlServer}/entrar`, formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json;charset=utf-8'
         },
       });
 
-      if (response.data) {
+      if (response) {
         showModal(response.data.success);
         setRegisterName('');
         setRegisterCpf('');
@@ -133,7 +149,9 @@ export default function Login() {
         setRegisterRepeatPassword('');
       }
     } catch (err) {
-      showModal(err.response.data.error);
+      err.response ?
+        showModal(err.response.data.error)
+      : showModal(err)
     }
   }
 

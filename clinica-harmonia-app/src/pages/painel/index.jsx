@@ -3,7 +3,7 @@ import axios from "axios"
 import logoPreto from "../../assets/imgs/logo-preto.png"
 import React, { useState, useEffect } from "react"
 import Cookies from "js-cookie"
-import env from "../../env.js"
+import env from "../../env"
 
 export default function Painel() {
 
@@ -25,7 +25,8 @@ export default function Painel() {
         try {
           const response = await axios.get(`${env.urlServer}/painel`, {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
+              Accept: 'application/json;charset=utf-8'
             }
           });
           if (response.status === 200 && response.data.name) {
@@ -69,7 +70,7 @@ export default function Painel() {
       try {
         const response = await axios.get(`${env.urlServer}/api/datehour`, {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            Accept: 'application/json;charset=utf-8'
           }
         });
   
@@ -109,8 +110,8 @@ export default function Painel() {
       const response = await axios.get(`${env.urlServer}/api/schedulings`, {
         headers: {
           'usercpf': `${userCpf}`,
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+          Accept: 'application/json;charset=utf-8'        
+          }
       })
       if (response) {
         if(response.data.agendamentos){
@@ -245,7 +246,8 @@ export default function Painel() {
         
         const response = await axios.post(`${env.urlServer}/painel`, formData, {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json;charset=utf-8'
           }
         })
         
@@ -285,7 +287,8 @@ export default function Painel() {
           try {
             const response = await axios.put(`${env.urlServer}/refresh-pass`, formData, {
               headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Accept: 'application/json;charset=utf-8'
               }
             })
   
@@ -350,7 +353,7 @@ export default function Painel() {
 
             <button title="Clique aqui para sair da sua conta" onClick={logout} className={styles.btnLogout}>Sair</button>
             <div className={styles.optionsHeader}>
-              <h1>Olá, {userName? userName.match(/\b(\w+)\b/)[0] : null}</h1>
+              <h1>Olá, {userName ? userName.split(' ')[0] : null}</h1>
               <picture>
                 <img src={logoPreto} alt="Logo da Clínica Harmonia" />
               </picture>
